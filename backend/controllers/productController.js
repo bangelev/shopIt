@@ -1,6 +1,7 @@
 const Product = require('../models/product')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
+const APIFeatures = require('../utils/APIfeatures')
 
 // Create New Product => /api/v1/products/new
 exports.newProduct = catchAsyncErrors(async(req, res, next) => {
@@ -13,13 +14,25 @@ exports.newProduct = catchAsyncErrors(async(req, res, next) => {
     })
 })
 
-// get ALL products => /api/v1/products
+// get ALL products => /api/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async(req, res, next) => {
-    const products = await Product.find()
+    // rezultati po strana
+    const resPerPage = Number(req.query.limit) || 4
+        // Ovaj del e potreben za backend -ot
+    const productCount = await Product.countDocuments()
+    const apiFeatures = new APIFeatures(Product.find(), req.query)
+        .search()
+        .filter()
+        .pagination(resPerPage)
+        // Mora da go pvikame query za da se izvrshi baraweto t.e
+        // query ce bide Product.find({name:"keyword"})
+    const products = await apiFeatures.query
+
     res.status(200).json({
         success: true,
-        message: 'This route will show all the products',
+        message: 'This route will show all selected products',
         count: products.length,
+        productCount,
         products,
     })
 })
