@@ -156,7 +156,7 @@ exports.updateProfile = catchAsyncErrors(async(req, res, next) => {
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
             new: true,
             runValidators: true,
-            useFindByIdAndModify: true,
+            useFindAndModify: false,
         })
         // Avatar TODO
     res.status(200).json({
