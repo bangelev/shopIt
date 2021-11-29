@@ -2,6 +2,8 @@ const path = require('path')
 const connectDatabase = require('./config/database')
 dotenv = require('dotenv')
 const app = require('./app')
+    // const cloudinary = require('cloudinary')
+var cloudinary = require('cloudinary').v2
 
 // if (process.env.NODE_ENV !== 'PRODUCTION')
 //   require('dotenv').config({ path: path.join(__dirname, 'config/.env') })
@@ -13,6 +15,13 @@ process.on('uncaughtException', (err) => {
     process.exit(1)
 })
 dotenv.config({ path: path.join(__dirname, 'config/.env') })
+
+//set up cloudinary config
+cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+    })
     //Connect to DB
 connectDatabase()
 

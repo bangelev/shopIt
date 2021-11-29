@@ -5,9 +5,19 @@ import {
     productsReducer,
     productDetailReducer,
 } from './redux/reducers/productReducers'
+
+import {
+    authReducer,
+    userReducer,
+    forgotPasswordReducer,
+} from './redux/reducers/userReducers'
+
 const rootReducer = combineReducers({
     products: productsReducer,
     productDetails: productDetailReducer,
+    auth: authReducer,
+    user: userReducer,
+    forgotPassword: forgotPasswordReducer,
 })
 
 let initialState = {}
