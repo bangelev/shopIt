@@ -22,7 +22,7 @@ import store from './store'
 function App() {
   useEffect(() => {
     store.dispatch(loadUser())
-  })
+  }, [])
   return (
     <Router>
       <div className="App">

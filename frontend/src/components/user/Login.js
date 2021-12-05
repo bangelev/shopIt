@@ -43,7 +43,7 @@ const Login = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={'login'} />
+          <MetaData title={'Login'} />
 
           <div className="row wrapper">
             <div className="col-10 col-lg-5">

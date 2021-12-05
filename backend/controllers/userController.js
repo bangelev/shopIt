@@ -200,7 +200,7 @@ exports.updateProfile = catchAsyncErrors(async(req, res, next) => {
 exports.logout = catchAsyncErrors(async(req, res, next) => {
     res.cookie('token', null, {
         expires: new Date(Date.now()),
-        HTTPOnly: true,
+        HttpOnly: true,
     })
     res.status(200).json({
         success: true,
