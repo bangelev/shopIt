@@ -12,6 +12,7 @@ import {
     forgotPasswordReducer,
 } from './redux/reducers/userReducers'
 import { cartReducer } from './redux/reducers/cartReducers'
+import { newOrderReducer } from './redux/reducers/orderReducers'
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
+    newOrder: newOrderReducer,
 })
 
 let initialState = {
@@ -27,6 +29,9 @@ let initialState = {
         cartItems: localStorage.getItem('cartItems') ?
             JSON.parse(localStorage.getItem('cartItems')) :
             [],
+        shippingInfo: localStorage.getItem('shippingInfo') ?
+            JSON.parse(localStorage.getItem('shippingInfo')) :
+            {},
     },
 }
 

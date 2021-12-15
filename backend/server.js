@@ -1,9 +1,9 @@
 const path = require('path')
 const connectDatabase = require('./config/database')
-dotenv = require('dotenv')
+const dotenv = require('dotenv')
 const app = require('./app')
     // const cloudinary = require('cloudinary')
-var cloudinary = require('cloudinary').v2
+const cloudinary = require('cloudinary').v2
 
 // if (process.env.NODE_ENV !== 'PRODUCTION')
 //   require('dotenv').config({ path: path.join(__dirname, 'config/.env') })

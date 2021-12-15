@@ -6,19 +6,19 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: true,
         },
-        address: {
+        city: {
             type: String,
             required: true,
         },
-        address: {
+        phoneNo: {
             type: String,
             required: true,
         },
-        address: {
+        postalCode: {
             type: String,
             required: true,
         },
-        address: {
+        country: {
             type: String,
             required: true,
         },
@@ -63,7 +63,7 @@ const orderSchema = mongoose.Schema({
         type: Date,
     },
 
-    itemPrice: {
+    itemsPrice: {
         type: Number,
         required: true,
         default: 0.0,

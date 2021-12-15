@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { login, clearError } from '../../redux/actions/userActions'
 
-const Login = () => {
+const Login = ({ location }) => {
   //component state
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -17,19 +17,19 @@ const Login = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { isAuthenticated, error, loading } = useSelector((state) => state.auth)
-
+  const redirect = location.search ? location.search.split('=')[1] : '/'
   // Use Effect HOOK
   useEffect(() => {
     // If user is logged in, not to log again
     if (isAuthenticated) {
-      history.push('/')
+      history.push(redirect)
     }
 
     if (error) {
       alert.error(error)
       dispatch(clearError())
     }
-  }, [dispatch, alert, error, loading, isAuthenticated, history])
+  }, [dispatch, alert, error, loading, isAuthenticated, history, redirect])
 
   //handlers
   const submitHandler = (event) => {
