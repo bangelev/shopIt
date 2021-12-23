@@ -67,8 +67,8 @@ const ConfirmOrder = () => {
 
                   <div className="col-4 col-lg-4 mt-4 mt-lg-0">
                     <p>
-                      {item.quantity} * {item.price} ={' '}
-                      <b>${item.price * item.quantity}</b>
+                      {item.quantity} * {item.price} =
+                      <b>${(item.price * item.quantity).toFixed(2)}</b>
                     </p>
                   </div>
                 </div>
@@ -97,7 +97,7 @@ const ConfirmOrder = () => {
             <hr />
 
             <p>
-              Total:{' '}
+              Total:
               <span className="order-summary-values">
                 ${totalPrice.toFixed(2)}
               </span>

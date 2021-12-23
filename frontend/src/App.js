@@ -25,6 +25,10 @@ import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import Home from './components/Home'
 
+//order components
+import OrderList from './components/order/OrderList'
+import OrderDetails from './components/order/OrderDetails'
+
 import { loadUser } from './redux/actions/userActions'
 import store from './store'
 
@@ -69,6 +73,9 @@ function App() {
               <ProtectedRoute path="/payment" component={Payment} />
             </Elements>
           )}
+          {/*Order component*/}
+          <ProtectedRoute path="/orders/me" component={OrderList} />
+          <ProtectedRoute path="/orders/:id" component={OrderDetails} />
         </div>
         <Footer />
       </div>
