@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 import './App.css'
 import { useEffect, useState } from 'react'
@@ -28,11 +29,17 @@ import Home from './components/Home'
 //order components
 import OrderList from './components/order/OrderList'
 import OrderDetails from './components/order/OrderDetails'
+// Admin component
+import Dashboard from './components/admin/Dashboard'
+import ProductsList from './components/admin/ProductsList'
+import NewProduct from './components/admin/NewProduct'
+import UpdateProduct from './components/admin/UpdateProduct'
 
 import { loadUser } from './redux/actions/userActions'
 import store from './store'
 
 function App() {
+  const { loading, user } = useSelector((state) => state.auth)
   const [stripeApiKey, setStripeApiKey] = useState('')
   useEffect(() => {
     store.dispatch(loadUser())
@@ -77,7 +84,30 @@ function App() {
           <ProtectedRoute path="/orders/me" component={OrderList} />
           <ProtectedRoute path="/orders/:id" component={OrderDetails} />
         </div>
-        <Footer />
+        {/*admin routes*/}
+        <ProtectedRoute
+          path="/dashboard"
+          isAdmin={true}
+          component={Dashboard}
+        />
+        <ProtectedRoute
+          path="/admin/products"
+          isAdmin={true}
+          component={ProductsList}
+        />
+        <ProtectedRoute
+          path="/admin/product/:id"
+          isAdmin={true}
+          component={UpdateProduct}
+        />
+        <ProtectedRoute
+          path="/admin/product"
+          exact
+          isAdmin={true}
+          component={NewProduct}
+        />
+
+        {!loading && user.role !== 'admin' && <Footer />}
       </div>
     </Router>
   )
