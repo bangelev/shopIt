@@ -163,7 +163,8 @@ const Payment = () => {
             </div>
 
             <button id="pay_btn" type="submit" className="btn btn-block py-3">
-              Pay {` - $${orderInfo && orderInfo.totalPrice}`}
+              Pay{' '}
+              {` - $${orderInfo && Number(orderInfo.totalPrice).toFixed(2)}`}
             </button>
           </form>
         </div>

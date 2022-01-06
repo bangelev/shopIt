@@ -87,8 +87,6 @@ const NewProduct = () => {
       }
       reader.readAsDataURL(file)
     })
-
-    console.log('ON CHANGE')
   }
 
   return (

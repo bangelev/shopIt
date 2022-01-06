@@ -44,7 +44,7 @@ import { loadUser } from './redux/actions/userActions'
 import store from './store'
 
 function App() {
-  const { loading } = useSelector((state) => state.auth)
+  const { loading, isAuthenticated, user } = useSelector((state) => state.auth)
   const [stripeApiKey, setStripeApiKey] = useState('')
   useEffect(() => {
     store.dispatch(loadUser())
@@ -81,7 +81,7 @@ function App() {
           {/*Cart component*/}
           <Route path="/cart" component={Cart} exact />
           <ProtectedRoute path="/shipping" component={Shipping} />
-          <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
+          <ProtectedRoute path="/confirm" component={ConfirmOrder} />
           <ProtectedRoute path="/success" component={OrderSuccess} />
           {stripeApiKey && (
             <Elements stripe={loadStripe(stripeApiKey)}>
@@ -89,8 +89,8 @@ function App() {
             </Elements>
           )}
           {/*Order component*/}
-          <ProtectedRoute path="/orders/me" component={OrderList} />
-          <ProtectedRoute path="/orders/:id" component={OrderDetails} />
+          <ProtectedRoute path="/orders/me" component={OrderList} exact />
+          <ProtectedRoute path="/order/:id" component={OrderDetails} />
         </div>
         {/*admin routes*/}
         <ProtectedRoute
@@ -146,7 +146,8 @@ function App() {
         />
 
         {/* <Footer /> */}
-        {!loading && <Footer />}
+        {/* {!loading && <Footer />} */}
+        {!loading && (!isAuthenticated || user.role !== 'admin') && <Footer />}
       </div>
     </Router>
   )

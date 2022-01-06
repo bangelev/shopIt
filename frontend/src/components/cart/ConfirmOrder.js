@@ -84,7 +84,9 @@ const ConfirmOrder = () => {
             <hr />
             <p>
               Subtotal:
-              <span className="order-summary-values">${itemsPrice}</span>
+              <span className="order-summary-values">
+                ${Number(itemsPrice).toFixed(2)}
+              </span>
             </p>
             <p>
               Shipping:

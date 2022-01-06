@@ -22,7 +22,7 @@ const Shipping = () => {
   const submitHandler = (event) => {
     event.preventDefault()
     dispatch(saveShippingInfo({ address, city, postalCode, country, phoneNo }))
-    history.push('/order/confirm')
+    history.push('/confirm')
   }
 
   return (
