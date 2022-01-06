@@ -257,9 +257,16 @@ exports.updateUser = catchAsyncErrors(async(req, res, next) => {
 
 // delete user profile details =>api/v1/admin/users/:id
 exports.deleteUser = catchAsyncErrors(async(req, res, next) => {
-    const user = await User.findById(req.user._id)
-
+    const user = await User.findById(req.params.id)
+    if (!user) {
+        return next(
+            new ErrorHandler(`User does not found with id: ${req.params.id}`)
+        )
+    }
     // Remove Avatar from cloudinary
+    const image_id = user.avatar.public_id
+    await cloudinary.uploader.destroy(image_id)
+
     await user.remove()
     res.status(200).json({
         success: true,

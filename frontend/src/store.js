@@ -7,18 +7,24 @@ import {
     newProductReducer,
     productReducer,
     newReviewReducer,
+    productReviewReducer,
+    reviewReducer,
 } from './redux/reducers/productReducers'
 
 import {
     authReducer,
     userReducer,
     forgotPasswordReducer,
+    allUsersReducer,
+    userDetailsReducer,
 } from './redux/reducers/userReducers'
 import { cartReducer } from './redux/reducers/cartReducers'
 import {
     newOrderReducer,
     myOrdersReducer,
     orderDetailsReducer,
+    allOrderReducer,
+    orderReducers,
 } from './redux/reducers/orderReducers'
 
 const rootReducer = combineReducers({
@@ -26,13 +32,19 @@ const rootReducer = combineReducers({
     productDetails: productDetailReducer,
     newProduct: newProductReducer,
     product: productReducer,
+    productReviews: productReviewReducer,
+    review: reviewReducer,
     auth: authReducer,
     user: userReducer,
+    userDetails: userDetailsReducer,
+    allUsers: allUsersReducer,
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
     newOrder: newOrderReducer,
     myOrders: myOrdersReducer,
     orderDetails: orderDetailsReducer,
+    allOrders: allOrderReducer,
+    order: orderReducers,
     newReview: newReviewReducer,
 })
 

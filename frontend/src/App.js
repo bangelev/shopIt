@@ -34,15 +34,23 @@ import Dashboard from './components/admin/Dashboard'
 import ProductsList from './components/admin/ProductsList'
 import NewProduct from './components/admin/NewProduct'
 import UpdateProduct from './components/admin/UpdateProduct'
+import OrdersList from './components/admin/OrdersList'
+import ProcessOrder from './components/admin/ProcessOrder'
+import UsersList from './components/admin/UsersList'
+import UpdateUser from './components/admin/UpdateUser'
+import ProductReviews from './components/admin/ProductReviews'
 
 import { loadUser } from './redux/actions/userActions'
 import store from './store'
 
 function App() {
-  const { loading, user } = useSelector((state) => state.auth)
+  const { loading } = useSelector((state) => state.auth)
   const [stripeApiKey, setStripeApiKey] = useState('')
   useEffect(() => {
     store.dispatch(loadUser())
+    // if (error) {
+    //   console.log(error)
+    // }
 
     async function getStripeApiKey() {
       const { data } = await axios.get('/api/v1/stripeapi')
@@ -106,8 +114,39 @@ function App() {
           isAdmin={true}
           component={NewProduct}
         />
+        <ProtectedRoute
+          path="/admin/order/:id"
+          exact
+          isAdmin={true}
+          component={ProcessOrder}
+        />
+        <ProtectedRoute
+          path="/admin/orders"
+          exact
+          isAdmin={true}
+          component={OrdersList}
+        />
+        <ProtectedRoute
+          path="/admin/users/:id"
+          exact
+          isAdmin={true}
+          component={UpdateUser}
+        />
+        <ProtectedRoute
+          path="/admin/users"
+          exact
+          isAdmin={true}
+          component={UsersList}
+        />
+        <ProtectedRoute
+          path="/admin/reviews"
+          exact
+          isAdmin={true}
+          component={ProductReviews}
+        />
 
-        {!loading && user.role !== 'admin' && <Footer />}
+        {/* <Footer /> */}
+        {!loading && <Footer />}
       </div>
     </Router>
   )

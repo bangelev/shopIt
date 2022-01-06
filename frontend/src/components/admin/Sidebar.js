@@ -43,12 +43,12 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="admin/users">
+            <Link to="/admin/users">
               <i className="fa fa-users"></i> Users
             </Link>
           </li>
           <li>
-            <Link to="admin/reviews">
+            <Link to="/admin/reviews">
               <i className="fa fa-star"></i> Reviews
             </Link>
           </li>
