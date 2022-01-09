@@ -61,16 +61,18 @@ exports.forgotPassword = catchAsyncErrors(async(req, res, next) => {
     }
     // get reset token
     const resetToken = user.getResetPasswordToken()
-        // zachuvuvanej token vo user
+        // saving token in user
     await user.save({ validateBeforeSave: false })
 
-    // create reset password url prvicno bez frontend
+    // create reset password url without frontend
     //     const resetUrl = `${req.protocol}://${req.get(
     //     'host'
     //   )}/api/v1/password/reset/${resetToken}`
 
-    // create reset password url za testiranje frontend
-    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`
+    // create reset password url for testing frontend
+    const resetUrl = `${req.protocol}://${req.get(
+    'host'
+  )}/password/reset/${resetToken}`
 
     const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`
 

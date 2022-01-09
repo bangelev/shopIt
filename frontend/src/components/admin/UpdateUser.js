@@ -70,41 +70,41 @@ const UpdateUser = ({ match }) => {
             {loading ? (
               <Loader />
             ) : (
-              <div class="row wrapper">
-                <div class="col-10 col-lg-5">
-                  <form class="shadow-lg" onSubmit={submitHandler}>
-                    <h1 class="mt-2 mb-5">Update User</h1>
+              <div className="row wrapper">
+                <div className="col-10 col-lg-5">
+                  <form className="shadow-lg" onSubmit={submitHandler}>
+                    <h1 className="mt-2 mb-5">Update User</h1>
 
-                    <div class="form-group">
-                      <label for="name_field">Name</label>
+                    <div className="form-group">
+                      <label htmlFor="name_field">Name</label>
                       <input
                         type="name"
                         id="name_field"
-                        class="form-control"
+                        className="form-control"
                         name="name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
                     </div>
 
-                    <div class="form-group">
-                      <label for="email_field">Email</label>
+                    <div className="form-group">
+                      <label htmlFor="email_field">Email</label>
                       <input
                         type="email"
                         id="email_field"
-                        class="form-control"
+                        className="form-control"
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
 
-                    <div class="form-group">
-                      <label for="role_field">Role</label>
+                    <div className="form-group">
+                      <label htmlFor="role_field">Role</label>
 
                       <select
                         id="role_field"
-                        class="form-control"
+                        className="form-control"
                         name="role"
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
@@ -116,7 +116,7 @@ const UpdateUser = ({ match }) => {
 
                     <button
                       type="submit"
-                      class="btn update-btn btn-block mt-4 mb-3"
+                      className="btn update-btn btn-block mt-4 mb-3"
                     >
                       Update
                     </button>

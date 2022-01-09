@@ -37,9 +37,9 @@ exports.newProduct = catchAsyncErrors(async(req, res, next) => {
 
 // get ALL products => /api/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async(req, res, next) => {
-    // rezultati po strana
+    // Results per page
     const resPerPage = Number(req.query.limit) || 4
-        // Ovaj del e potreben za backend -ot
+
     const productCount = await Product.countDocuments()
 
     const apiFeatures = new APIFeatures(Product.find(), req.query)

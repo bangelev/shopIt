@@ -1,12 +1,16 @@
 const path = require('path')
 const connectDatabase = require('./config/database')
-const dotenv = require('dotenv')
+    // const dotenv = require('dotenv')
 const app = require('./app')
     // const cloudinary = require('cloudinary')
 const cloudinary = require('cloudinary').v2
 
-// if (process.env.NODE_ENV !== 'PRODUCTION')
-//   require('dotenv').config({ path: path.join(__dirname, 'config/.env') })
+if (process.env.NODE_ENV !== 'PRODUCTION')
+    require('dotenv').config({
+        path: path.join(__dirname, 'backend/config/.env'),
+    })
+
+// dotenv.config({ path: path.join(__dirname, 'config/.env') })
 
 // Handle Uncaught exceptions
 process.on('uncaughtException', (err) => {
@@ -14,7 +18,6 @@ process.on('uncaughtException', (err) => {
     console.log('Shutting down due to uncaught exception')
     process.exit(1)
 })
-dotenv.config({ path: path.join(__dirname, 'config/.env') })
 
 //set up cloudinary config
 cloudinary.config({

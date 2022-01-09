@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 
 import './App.css'
 import { useEffect, useState } from 'react'
@@ -44,7 +44,6 @@ import { loadUser } from './redux/actions/userActions'
 import store from './store'
 
 function App() {
-  const { loading, isAuthenticated, user } = useSelector((state) => state.auth)
   const [stripeApiKey, setStripeApiKey] = useState('')
   useEffect(() => {
     store.dispatch(loadUser())
@@ -58,6 +57,7 @@ function App() {
     }
     getStripeApiKey()
   }, [])
+  // const { loading, isAuthenticated, user } = useSelector((state) => state.auth)
   return (
     <Router>
       <div className="App">
@@ -144,10 +144,8 @@ function App() {
           isAdmin={true}
           component={ProductReviews}
         />
-
-        {/* <Footer /> */}
-        {/* {!loading && <Footer />} */}
-        {!loading && (!isAuthenticated || user.role !== 'admin') && <Footer />}
+        <Footer />
+        {/* {!loading && (!isAuthenticated || user.role !== 'admin') && <Footer />} */}
       </div>
     </Router>
   )

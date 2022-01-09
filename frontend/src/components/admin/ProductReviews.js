@@ -34,9 +34,9 @@ const ProductReviews = () => {
       dispatch(clearError())
     }
 
-    if (productId !== '') {
-      dispatch(getAllReviews(productId))
-    }
+    // if (productId !== '') {
+    //   dispatch(getAllReviews(productId))
+    // }
 
     if (isDeleted) {
       alert.success('Review deleted successfully')

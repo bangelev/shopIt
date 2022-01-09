@@ -6,7 +6,11 @@ const fileUpload = require('express-fileupload')
 const dotenv = require('dotenv')
 const path = require('path')
 
-dotenv.config({ path: path.join(__dirname, 'config/.env') })
+// Setting up config file
+if (process.env.NODE_ENV !== 'production')
+    require('dotenv').config({
+        path: path.join(__dirname, 'backend/config/.env'),
+    })
 
 const app = express()
 
@@ -14,6 +18,15 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(fileUpload())
+
+if (process.env.NODE_ENV === 'PRODUCTION') {
+    const root = path.join(__dirname, '../frontend', 'build')
+    app.use(express.static(root))
+
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
+    })
+}
 
 // import all the routes
 
